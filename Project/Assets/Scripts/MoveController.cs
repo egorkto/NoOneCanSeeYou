@@ -14,11 +14,9 @@ public class MoveController : MonoBehaviour
     [SerializeField]
     public float movementForce = 1f;
     [SerializeField]
-    private float jumpForce = 5f;
-    [SerializeField]
     public float maxSpeed = 5f;
-    public Vector3 forceDirection = Vector3.zero;
-    public float animValue;
+    private Vector3 forceDirection = Vector3.zero;
+    [HideInInspector]public float animValue;
     [SerializeField] private float turnSpeed;
     [SerializeField]
     private Camera playerCamera;
@@ -34,7 +32,6 @@ public class MoveController : MonoBehaviour
     private void OnEnable()
     {
         move = playerActionsAsset.Player.Move;
-        run = playerActionsAsset.Player.Run;
         playerActionsAsset.Player.Enable();
     }
 
@@ -45,22 +42,18 @@ public class MoveController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (run.IsPressed() && move.IsPressed())
-        {
-            movementForce = 3;
-            animValue = 1;
-        }
-        else if(move.IsPressed())
+
+        if(move.IsPressed())
         {
             movementForce = 1;
-            animValue = 0.5f;
+            animValue = 1f;
         }
         else
         {
             animValue = 0;
         }
-        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * movementForce;
-        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * movementForce;
+        forceDirection.z += -move.ReadValue<Vector2>().x * movementForce;
+        forceDirection.x += move.ReadValue<Vector2>().y  * movementForce;
         
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
@@ -78,9 +71,8 @@ public class MoveController : MonoBehaviour
 
     private void LookAt()
     {
-        Vector3 direction = rb.velocity;
+        Vector3 direction = -rb.velocity;
         direction.y = 0f;
-
         if (move.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
         {
             this.rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
@@ -91,20 +83,6 @@ public class MoveController : MonoBehaviour
 
         else
             rb.angularVelocity = Vector3.zero;
-    }
-
-    private Vector3 GetCameraForward(Camera playerCamera)
-    {
-        Vector3 forward = playerCamera.transform.forward;
-        forward.y = 0;
-        return forward.normalized;
-    }
-
-    private Vector3 GetCameraRight(Camera playerCamera)
-    {
-        Vector3 right = playerCamera.transform.right;
-        right.y = 0;
-        return right.normalized;
     }
 
 
