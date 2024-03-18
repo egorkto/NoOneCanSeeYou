@@ -745,18 +745,18 @@ PlayerSettings:
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
   scriptingDefineSymbols:
-    Android: 
-    Bratwurst: 
-    EmbeddedLinux: 
-    GameCoreXboxOne: 
-    Nintendo Switch: 
-    PS4: 
-    PS5: 
-    QNX: 
-    Standalone: 
-    WebGL: 
-    XboxOne: 
-    tvOS: 
+    Android: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    Bratwurst: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    Nintendo Switch: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    PS4: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    PS5: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    QNX: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    Standalone: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    WebGL: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    XboxOne: UNITY_POST_PROCESSING_STACK_V2;SCPE
+    tvOS: UNITY_POST_PROCESSING_STACK_V2;SCPE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

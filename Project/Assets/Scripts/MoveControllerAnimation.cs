@@ -13,6 +13,6 @@ public class MoveControllerAnimation : MonoBehaviour
     }
     private void Update()
     {
-        _animator.SetFloat("speed", _moveController.animValue,3f,0.3f);
+        _animator.SetFloat("speed", _moveController.animValue,3f,1f);
     }
 }
